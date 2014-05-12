@@ -1,22 +1,19 @@
 
+
+$(document).ready(function() {
+	$('tr.numbers').hide('slow', function() {
+		console.log('done'); 
+	}); 
+});
+
+
 $(document).on('click', function() {
-	var i, thinkDing, symbolInterval;
+	var i, thinkDing, symbolInterval, chartGoal, randomSymbol;
 	
 	i =0;
 	thinkDing = '❂☭☮♕♞☸♗♠☹✪❉✂☾☂♆✸★✈♙☏♬☢☠☯♖✿';
 	
-
-	
-	/*$('tr.symbols').find('td').each(function() {
-	
-		$(this).html(thinkDing[i]);
-		i++; 
-
-		if(i >= thinkDing.length) {
-			i = 0; 
-		}
-	});
-	*/
+		
 	
 	// Returns a random integer between min and max
 	// Using Math.round() will give you a non-uniform distribution!
@@ -25,13 +22,35 @@ $(document).on('click', function() {
 	}
 
 	function changeRandomSymbol() {
-		var randomSymbol, randomSpot; 
-		randomSymbol = getRandomInt(0, 25);
-		randomSpot = getRandomInt(0, 99); 		
+		var randomSymbol, randomSpot, currentSymbol; 
 
-		$('tr.symbols').find('td').eq(randomSpot).html(thinkDing[randomSymbol]);
+		//find a random symbol and a random location to place it
+		randomSymbol = thinkDing[getRandomInt(0, 25)];
+		randomSpot = getRandomInt(0, 99); 		
+		currentSymbol = $('tr.symbols').find('td').eq(randomSpot).html();
+
+		//if the symbol in the random location is already
+		//correct find a new spot and symbol
+		while(chartGoal[randomSpot] === currentSymbol) {
+			randomSymbol = thinkDing[getRandomInt(0, 25)];
+			randomSpot = getRandomInt(0, 99);
+			currentSymbol = $('tr.symbols').find('td').eq(randomSpot).html(); 		
+		}
+
+		//place the random symbol in the random spot on the chart
+		randomSymbol = '<div>'+randomSymbol+'</div>';
+		$('tr.symbols').find('td').eq(randomSpot).html(randomSymbol);
 
 	}
+
+	//fill chartGoal with 100 random thinkDing chars
+	chartGoal = '';
+	randomSymbol = thinkDing[getRandomInt(0, 25)];  
+	for(i=0; i<=100; i++){
+	 chartGoal = chartGoal + randomSymbol;
+	}
+
+	console.log(chartGoal); 
 
 	symbolInterval = setInterval(function() { 
 		var i, changesAtOnce;

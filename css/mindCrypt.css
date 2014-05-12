@@ -16,17 +16,14 @@
 
 table {
 	font-family: icomoon;
-	font-size: 2.5em;
+	font-size: 3em;
 		
 }
-
- tr .numbers  {
-	visibility: hidden;
-}
+ 
 
 .table-bordered td {
-	width: 50px;
-	height: 50px;
+	width: 60px;
+	height: 60px;
     
     overflow: hidden;
 	/*display: inline-block;*/   
