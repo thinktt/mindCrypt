@@ -16,14 +16,15 @@
 
 table {
 	font-family: icomoon;
-	font-size: 3em;
-		
+	font-size: 300%;
+	margin: 0 auto;
+	float: none;
 }
  
 
 .table-bordered td {
-	width: 60px;
-	height: 60px;
+	width: 1.5em;
+	height: 1.5em;
     
     overflow: hidden;
 	/*display: inline-block;*/   
@@ -35,11 +36,7 @@ table {
 
 .number {
 	font-size: .30em;
-	float: left;
-	margin-top: -0.25em;
-	margin-left: -0.75em;
 	position: absolute;
-
 
 }
 
