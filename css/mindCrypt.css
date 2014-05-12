@@ -33,3 +33,18 @@ table {
 	
 }
 
+.number {
+	font-size: .30em;
+	float: left;
+	margin-top: -0.25em;
+	margin-left: -0.75em;
+	position: absolute;
+
+
+}
+
+.symbol {
+
+}
+
+

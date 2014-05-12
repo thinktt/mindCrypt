@@ -1,10 +1,26 @@
 
 
 $(document).ready(function() {
-	$('tr.numbers').hide('slow', function() {
-		console.log('done'); 
-	}); 
+	var $numberSpan, $symbolSpan, symbol, $symbolSpots,
+		$numberSpots;
+
+	$numberSpan =  $('<span>99</span>');
+	$numberSpan.addClass('number'); 
+
+	$symbolSpan = $('<span>♞</span>');
+	$symbolSpan.addClass('symbol'); 
+		
+	 $('tr.symbols').find('td').eq(0).append($numberSpan);
+	 $('tr.symbols').find('td').eq(0).append($symbolSpan);
+
+	 $symbolSpots = $('tr.symbols').find('td').find('span.symbol');
+	 $numberSpots = $('tr.symbols').find('td').find('span.number');
+
+	$symbolSpots.eq(0).html('X'); 
+	$numberSpots.eq(0).html('10'); 
 });
+
+
 
 
 $(document).on('click', function() {
@@ -50,7 +66,8 @@ $(document).on('click', function() {
 	 chartGoal = chartGoal + randomSymbol;
 	}
 
-	console.log(chartGoal); 
+
+
 
 	symbolInterval = setInterval(function() { 
 		var i, changesAtOnce;
