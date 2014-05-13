@@ -11,7 +11,7 @@
 }
 
 .top-of-page {
-	padding-top: 4em;
+	padding-top: 5em;
 }
 
 table {
@@ -25,18 +25,15 @@ table {
 .table-bordered td {
 	width: 1.5em;
 	height: 1.5em;
-    
     overflow: hidden;
-	/*display: inline-block;*/   
-	/* white-space: nowrap;*/
-
 	text-align: center;
-	
 }
 
 .number {
 	font-size: .30em;
 	position: absolute;
+	/*visibility: hidden;*/
+
 
 }
 

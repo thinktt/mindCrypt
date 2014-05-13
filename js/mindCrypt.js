@@ -1,33 +1,57 @@
 
 
 $(document).ready(function() {
-	var $numberSpan, $symbolSpan, symbol, $symbolSpots,
-		$numberSpots;
+	
+	var $numberDiv, $symbolDiv, symbol, $symbolSpots,
+		$numberSpots, i;
 
-	$numberSpan =  $('<span>99</span>');
-	$numberSpan.addClass('number'); 
+	//create the number Div object to be cloned
+	$numberDiv =  $('<div></div>');
+	$numberDiv.addClass('number');
+	$numberDiv.hide();  
+	//clone it across all the table data elements
+	$('tr.symbols').find('td').each(function() {
+		$numberDiv.clone().appendTo(this);
+	});
 
-	$symbolSpan = $('<span>♞</span>');
-	$symbolSpan.addClass('symbol'); 
-		
-	 $('tr.symbols').find('td').eq(0).append($numberSpan);
-	 $('tr.symbols').find('td').eq(0).append($symbolSpan);
+	//creat the sybol div to be cloned
+	$symbolDiv = $('<div></div>');
+	$symbolDiv.addClass('symbol'); 
+	$symbolDiv.addClass('isSwitchable'); 
+	//clone it across all the table data elements
+	$('tr.symbols').find('td').each(function() {
+		$symbolDiv.clone().appendTo(this);
+	});
 
-	 $symbolSpots = $('tr.symbols').find('td').find('span.symbol');
-	 $numberSpots = $('tr.symbols').find('td').find('span.number');
+	//creat a jQuery object that contains all the numberSpot and symbolspots
+	$numberSpots = $('tr.symbols').find('td').find('div.number');
+	$symbolSpots = $('tr.symbols').find('td').find('div.symbol');
 
-	$symbolSpots.eq(0).html('X'); 
-	$numberSpots.eq(0).html('10'); 
+
+	//number each square of the chart
+	i = 99; 
+	$numberSpots.each(function() {
+		$(this).html(i); 
+		--i; 
+	}); 
+	
 });
 
 
 
 
-$(document).on('click', function() {
-	var i, thinkDing, symbolInterval, chartGoal, randomSymbol;
+$('html').on('click', function() {
 	
-	i =0;
+	//remove the click event so it only happens once
+	$('html').unbind('click'); 
+
+	var i, thinkDing, symbolInterval, chartGoalStart, chartGoalEnd, 
+		randomSymbol, $numberSpots, $symbolSpots, secretSymbol, magicNumbers;
+
+	$numberSpots = $('tr.symbols').find('td').find('div.number');
+	$symbolSpots = $('tr.symbols').find('td').find('div.symbol');
 	thinkDing = '❂☭☮♕♞☸♗♠☹✪❉✂☾☂♆✸★✈♙☏♬☢☠☯♖✿';
+	i =0;
 	
 		
 	
@@ -38,45 +62,67 @@ $(document).on('click', function() {
 	}
 
 	function changeRandomSymbol() {
-		var randomSymbol, randomSpot, currentSymbol; 
-
+		var secretSymbol, randomSpot, currentSymbol; 
+		
 		//find a random symbol and a random location to place it
-		randomSymbol = thinkDing[getRandomInt(0, 25)];
-		randomSpot = getRandomInt(0, 99); 		
-		currentSymbol = $('tr.symbols').find('td').eq(randomSpot).html();
+		secretSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1) )];
+		randomSpot = getRandomInt(0, ($symbolSpots.length - 1)); 		
+		currentSymbol = $symbolSpots.eq(randomSpot).html();
 
-		//if the symbol in the random location is already
-		//correct find a new spot and symbol
-		while(chartGoal[randomSpot] === currentSymbol) {
-			randomSymbol = thinkDing[getRandomInt(0, 25)];
-			randomSpot = getRandomInt(0, 99);
-			currentSymbol = $('tr.symbols').find('td').eq(randomSpot).html(); 		
+	
+		//place the random symbol in the random spot on the chart
+		$symbolSpots.eq(randomSpot).html(secretSymbol);
+
+		
+		//if the symbol spot contains it's correct charachter
+		if(secretSymbol === chartGoalStart[randomSpot]) {
+			//remove this spot from the switchable class
+			$symbolSpots.eq(randomSpot).removeClass('isSwitchable');
+			//remove the above object from the jQuery object 
+			$symbolSpots = $symbolSpots.filter('.isSwitchable');
 		}
 
-		//place the random symbol in the random spot on the chart
-		randomSymbol = '<div>'+randomSymbol+'</div>';
-		$('tr.symbols').find('td').eq(randomSpot).html(randomSymbol);
+		if($symbolSpots.length <= 0) {
+			clearInterval(switchInterval);
+			$numberSpots.fadeIn('slow');
+			
+		}
 
 	}
 
-	//fill chartGoal with 100 random thinkDing chars
-	chartGoal = '';
-	randomSymbol = thinkDing[getRandomInt(0, 25)];  
+	//fill chartGoalEnd with one random secret charachter
+	chartGoalEnd = '';
+	secretSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1))];  
 	for(i=0; i<=100; i++){
-	 chartGoal = chartGoal + randomSymbol;
+		chartGoalEnd = chartGoalEnd + secretSymbol;
+	}
+
+	//fill chartGoalStart with 100 random thinkDing chars
+	chartGoalStart = '';
+	for(i=0; i<=100; i++){
+		randomSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1))];  
+		chartGoalStart = chartGoalStart + randomSymbol;
+	}
+	//place in the secret symbol at the magic number spots
+	magicNumbers = [8, 17, 26, 35, 44, 53, 62, 71, 80];
+	for(i=0; i >= magicNumbers.length; i++) {
+		chartGoalStart[magicNumbers[i]] = secretSymbol;
 	}
 
 
 
 
-	symbolInterval = setInterval(function() { 
-		var i, changesAtOnce;
+	var changesAtOnce, intervalTimes;
+	
+	intervalTimes = 0; 
+
+	switchInterval = setInterval(function() { 
 		changesAtOnce = 10; 
 
 		for(i = 0; i<changesAtOnce; i++){
 			changeRandomSymbol(); 
 		}
-
+		
 	}, 50);
 
 });
