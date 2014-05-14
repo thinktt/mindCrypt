@@ -93,23 +93,43 @@ $('html').on('click', function() {
 	//fill chartGoalEnd with one random secret charachter
 	chartGoalEnd = '';
 	secretSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1))];  
-	for(i=0; i<=100; i++){
+	for(i=0; i < 100; i++){
 		chartGoalEnd = chartGoalEnd + secretSymbol;
 	}
 
-	//fill chartGoalStart with 100 random thinkDing chars
-	chartGoalStart = '';
-	for(i=0; i<=100; i++){
-		randomSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1))];  
-		chartGoalStart = chartGoalStart + randomSymbol;
-	}
-	//place in the secret symbol at the magic number spots
 	magicNumbers = [8, 17, 26, 35, 44, 53, 62, 71, 80];
-	for(i=0; i >= magicNumbers.length; i++) {
-		chartGoalStart[magicNumbers[i]] = secretSymbol;
-	}
+
+	//fill chartGoalStart with 100 random thinkDing chars
+	// chartGoalStart = '';
+	// for(i=0; i< 100; i++){
+	// 	//randomSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1))];  
+	// 	randomSymbol = '☏'; 
+		
+	// 	//chedk if this is one of the magic spots if so clear that spot
+	// 	//on the list of magic spots and change the 'random symbol' to
+	// 	//the secret symbol
+	// 	if(i === magicNumbers[0]) {
+	// 		console.log(magicNumbers.shift()); 
+	// 		randomSymbol = secretSymbol; 
+	// 	}
 
 
+	// 	chartGoalStart = chartGoalStart + randomSymbol;
+	// }
+
+	chartGoalStart = '♠♠♠♠♠♠♠♠♠♠' +
+					 '★★★★★★★★★★' +
+					 '★★★★★★★★★★' +
+					 '★★★★★★★★★★' +
+					 '★★★★★★★★★★' +
+					 '★★★★★★★★★★' +
+					 '★★★★★★★★★★' +
+					 '★★★★★★★★★★' +
+					 '★★★★★★★★★★' +
+					 '★★★★★★★★★★' ;
+
+	console.log(chartGoalEnd, chartGoalEnd.length); 
+	console.log(chartGoalStart, chartGoalStart.length); 
 
 
 	var changesAtOnce, intervalTimes;
@@ -117,7 +137,7 @@ $('html').on('click', function() {
 	intervalTimes = 0; 
 
 	switchInterval = setInterval(function() { 
-		changesAtOnce = 10; 
+		changesAtOnce = 1; 
 
 		for(i = 0; i<changesAtOnce; i++){
 			changeRandomSymbol(); 
