@@ -12,8 +12,10 @@ for(x=10; x<=99; x++) {
 console.log(secretNums); 
 
 x = [9, 18, 27, 36, 45, 54, 63, 72, 81];
-x = [8, 17, 26, 35, 44, 53, 62, 71, 80];
+x = [8, 17, 26, 35, 44, 53, 62, 71, 8];
 
-var string = 'abc';
-string = string.replaceAt(8, 'e'); 
-console.log(string); 
+var array = ['a', 'b', 'c'];
+
+array.splice(1,1); 
+
+console.log(array); 
