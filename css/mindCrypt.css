@@ -12,6 +12,7 @@
 
 .top-of-page {
 	padding-top: 5em;
+	text-align: center;
 }
 
 table {
@@ -44,7 +45,6 @@ table {
 	position: relative;
 	margin: 0 auto;
 	text-align: center;
-	
 }
 
 .mind-connection-status .glyphicon-user {
@@ -52,6 +52,7 @@ table {
 	margin: 0 auto;
 	top: 0;
 	left: 0;
+
 }
 
 .mind-connection-status .glyphicon-exclamation-sign {
@@ -59,20 +60,16 @@ table {
 	position: absolute;
 	top: .5em;
 	left: 1.5em;
-	/*margin-left: -2.5em;*/
-	/*margin-top: 0.6em;*/
+	color: red;
+
 }
 
 .mind-connection-status .glyphicon-eye-open {
 	font-size: .25em;
 	position: absolute;
-	/*margin-left: -2.40em;*/
-	margin-top: 0.6em;
+	top: .5em;
+	left: 1.5em;
+	color: green;
 }
 
-
-
-.text-success {
-	color: #333;
-}
 
