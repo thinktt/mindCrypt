@@ -38,8 +38,8 @@ table {
 }
 
 .mind-connection-status {
-	width: 1.5em;
-	height: 1.5em;
+	width: 1em;
+	height: 1em;
 	font-size: 250%;
 	position: relative;
 	margin: 0 auto;
@@ -47,19 +47,29 @@ table {
 	
 }
 
-.mind-connection-status .glyphicon-eye-open {
-	font-size: .25em;
+.mind-connection-status .glyphicon-user {
 	position: absolute;
-	margin-left: -2.40em;
-	margin-top: 0.6em;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
 }
 
 .mind-connection-status .glyphicon-exclamation-sign {
 	font-size: .25em;
 	position: absolute;
-	margin-left: -2.5em;
+	top: .5em;
+	left: 1.5em;
+	/*margin-left: -2.5em;*/
+	/*margin-top: 0.6em;*/
+}
+
+.mind-connection-status .glyphicon-eye-open {
+	font-size: .25em;
+	position: absolute;
+	/*margin-left: -2.40em;*/
 	margin-top: 0.6em;
 }
+
 
 
 .text-success {
