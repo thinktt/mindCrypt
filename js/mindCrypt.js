@@ -1,67 +1,71 @@
 
 
-$(document).ready(function() {
-	
-	var $numberDiv, $symbolDiv, symbol, $symbolSpots,
-		$numberSpots, i;
 
-	//create the number Div object to be cloned
-	$numberDiv =  $('<div></div>');
-	$numberDiv.addClass('number');
-	$numberDiv.hide();  
-	//clone it across all the table data elements
-	$('tr.symbols').find('td').each(function() {
-		$numberDiv.clone().appendTo(this);
-	});
+var mindCrypt = (function($) {
 
-	//creat the sybol div to be cloned
-	$symbolDiv = $('<div></div>');
-	$symbolDiv.addClass('symbol'); 
-	$symbolDiv.addClass('isSwitchable'); 
-	//clone it across all the table data elements
-	$('tr.symbols').find('td').each(function() {
-		$symbolDiv.clone().appendTo(this);
-	});
+	var $numberDiv, $symbolDiv, symbol, $symbolSpots,$numberSpots, i, 
+		initApp, thinkDing, chartGoalStart, chartGoalEnd, 
+		randomSymbol, secretSymbol, magicNumbers, getRandomInt, 
+		changeRandomSymbol, firstRunEnd, secondRunEnd, runEnding, 
+		startInterval, buildCharts, runStart;
 
-	//creat a jQuery object that contains all the numberSpot and symbolspots
-	$numberSpots = $('tr.symbols').find('td').find('div.number');
-	$symbolSpots = $('tr.symbols').find('td').find('div.symbol');
-
-
-	//number each square of the chart
-	i = 99; 
-	$numberSpots.each(function() {
-		$(this).html(i); 
-		--i; 
-	}); 
-	
-});
-
-
-
-
-$('html').on('click', function() {
-	
-	//remove the click event so it only happens once
-	$('html').unbind('click'); 
-
-	var i, thinkDing, symbolInterval, chartGoalStart, chartGoalEnd, 
-		randomSymbol, $numberSpots, $symbolSpots, secretSymbol, magicNumbers;
-
-	$numberSpots = $('tr.symbols').find('td').find('div.number');
-	$symbolSpots = $('tr.symbols').find('td').find('div.symbol');
+	//symbols used in the switching chart
 	thinkDing = '❂☭☮♕♞☸♗♠☹✪❉✂☾☂♆✸★✈♙☏♬☢☠☯♖✿';
+	
+	//the actual DOM chart locations that the secret symbol 
+	//will be placed in 
+	magicNumbers = [18, 27, 36, 45, 54, 63, 72, 81, 90];
+	
 	i =0;
 	
+	//set up the DOM and the all jQuery objects, bind the click event
+	//for starting the app	
+	initApp = function() {
+		//create the number Div object to be cloned
+		$numberDiv =  $('<div></div>');
+		$numberDiv.addClass('number');
+		$numberDiv.hide();  
+		//clone it across all the table data elements
+		$('tr.symbols').find('td').each(function() {
+			$numberDiv.clone().appendTo(this);
+		});
+
+		//creat the sybol div to be cloned
+		$symbolDiv = $('<div></div>');
+		$symbolDiv.addClass('symbol'); 
+		$symbolDiv.addClass('isSwitchable'); 
+		//clone it across all the table data elements
+		$('tr.symbols').find('td').each(function() {
+			$symbolDiv.clone().appendTo(this);
+		});
+
+		//creat a jQuery object that contains all the numberSpot and symbolspots
+		$numberSpots = $('tr.symbols').find('td').find('div.number');
+		$symbolSpots = $('tr.symbols').find('td').find('div.symbol');
+
+
+		//number each square of the chart
+		i = 99; 
+		$numberSpots.each(function() {
+			$(this).html(i); 
+			--i; 
+		}); 
 		
+		$('html').on('click', runStart); 
+	};
+
+			
 	
 	// Returns a random integer between min and max
 	// Using Math.round() will give you a non-uniform distribution!
-	function getRandomInt(min, max) {
+	getRandomInt = function(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
+	};
 
-	function changeRandomSymbol(chartGoal, callback) {
+	
+	//Switches symbols randoley in the symbol chart until the symbols begin
+	//and eventually match the chartGoal 
+	changeRandomSymbol = function(chartGoal, callback) {
 		var secretSymbol, randomSpot, currentSymbol; 
 		
 		//find a random symbol and a random location to place it
@@ -86,19 +90,29 @@ $('html').on('click', function() {
 			chartGoal.splice(randomSpot,1); 
 		}
 
-	}
+	};
 
-	function firstRunEnd() {
+	//the callback used when startInterval finishes it's first run 
+	firstRunEnd = function() {
 		$numberSpots.fadeIn('slow');
 		$('html').on('click', runEnding); 
-	}
+	};
 
-	function secondRunEnd() {
+	//the callback used when startInterval finsishes it second run
+	secondRunEnd = function() {
 
-	}
+	};
 
+	//starts the first part of mindCrypt, is bound to a click 
+	//event after initDOM is run
+	runStart = function() {
+		$('html').unbind('click'); 
+		startInterval(chartGoalStart, firstRunEnd);
+	};
 
-	function runEnding() {
+	//this function is bound to a click event after the first part of 
+	//mindCrytp has run 
+	runEnding = function() {
 		$('html').unbind('click'); 
 		$numberSpots.fadeOut('slow');
 
@@ -110,12 +124,13 @@ $('html').on('click', function() {
 		});
 
 		startInterval(chartGoalEnd, secondRunEnd);
-	
-	}
+	};
 
-	function startInterval(chartGoal, callback) {
-
-		var changesAtOnce;
+ 	
+ 	//starts the symbol switchng takes a callback  to tell it what to do
+ 	//when symbol switching is complete
+ 	startInterval = function(chartGoal, callback) {
+		var changesAtOnce, switchInterval;
 
 		switchInterval = setInterval(function() { 
 			changesAtOnce = 10; 
@@ -134,41 +149,45 @@ $('html').on('click', function() {
 			
 		}, 50);
 
-	}
+	};
 
-
-	//fill chartGoalEnd with one random secret charachter
-	chartGoalEnd = [];
-	secretSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1))];  
-	for(i=0; i < 100; i++){
-		chartGoalEnd.push(secretSymbol);
-	}
-	
-
-	magicNumbers = [18, 27, 36, 45, 54, 63, 72, 81, 90];
-
-	//fill chartGoalStart with 100 random thinkDing chars
-	chartGoalStart = [];
-	for(i=0; i< 100; i++){
-		randomSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1))];  
-		//randomSymbol = '☏'; 
-		
-		//check if this is one of the magic spots if so clear that spot
-		//on the list of magic spots and change the 'random symbol' to
-		//the secret symbol
-		if(i === magicNumbers[0]) {
-			magicNumbers.shift(); 
-			randomSymbol = secretSymbol; 
+	//builds the charts that tell the symbol switching what it's goal is
+	buildCharts = function() {
+		//fill chartGoalEnd with one random secret charachter
+		chartGoalEnd = [];
+		secretSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1))];  
+		for(i=0; i < 100; i++){
+			chartGoalEnd.push(secretSymbol);
 		}
+		
+		
+		//fill chartGoalStart with 100 random thinkDing chars
+		chartGoalStart = [];
+		for(i=0; i< 100; i++){
+			randomSymbol = thinkDing[getRandomInt(0, (thinkDing.length - 1))];  
+			//randomSymbol = '☏'; 
+			
+			//check if this is one of the magic spots if so clear that spot
+			//on the list of magic spots and change the 'random symbol' to
+			//the secret symbol
+			if(i === magicNumbers[0]) {
+				magicNumbers.shift(); 
+				randomSymbol = secretSymbol; 
+			}
+
+			chartGoalStart.push(randomSymbol);
+		}
+	};
 
 
-		chartGoalStart.push(randomSymbol);
-	}
+	buildCharts(); 
+
+	return {
+		initApp: initApp,
+	};
+
+}(jQuery));
 
 
-	startInterval(chartGoalStart, firstRunEnd); 
-
-
-
-});
+$(document).ready(mindCrypt.initApp);
 

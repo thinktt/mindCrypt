@@ -1,0 +1,9 @@
+{
+    "browser": true,
+    "devel": true, 
+    "laxbreak": true,
+    "loopfunc": true,
+    "undef": true,
+	"latedef": true,
+    "predef": ["jQuery", "console", "$"]
+}
