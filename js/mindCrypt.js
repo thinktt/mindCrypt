@@ -7,7 +7,8 @@ var mindCrypt = (function($) {
 		initApp, thinkDing, chartGoalStart, chartGoalEnd, 
 		randomSymbol, secretSymbol, magicNumbers, getRandomInt, 
 		changeRandomSymbol, firstRunEnd, secondRunEnd, runEnding, 
-		startInterval, buildCharts, runStart;
+		startInterval, buildCharts, runStart, chartMiddle, runMiddle,
+		middleEnd;
 
 	//symbols used in the switching chart
 	thinkDing = '❂☭☮♕♞☸♗♠☹✪❉✂☾☂♆✸★✈♙☏♬☢☠☯♖✿';
@@ -51,6 +52,7 @@ var mindCrypt = (function($) {
 			--i; 
 		}); 
 		
+		$('.mind-connection-status').slidToggle(); 
 		$('html').on('click', runStart); 
 	};
 
@@ -99,9 +101,8 @@ var mindCrypt = (function($) {
 	};
 
 	//the callback used when startInterval finsishes it second run
-	secondRunEnd = function() {
+	secondRunEnd = function() {};
 
-	};
 
 	//starts the first part of mindCrypt, is bound to a click 
 	//event after initDOM is run
@@ -109,6 +110,7 @@ var mindCrypt = (function($) {
 		$('html').unbind('click'); 
 		startInterval(chartGoalStart, firstRunEnd);
 	};
+
 
 	//this function is bound to a click event after the first part of 
 	//mindCrytp has run 
@@ -123,14 +125,29 @@ var mindCrypt = (function($) {
 			$(this).addClass('isSwitchable'); 
 		});
 
-		startInterval(chartGoalEnd, secondRunEnd);
+		startInterval(chartGoalEnd, secondRunEnd, 10000);
+
+		//after 10 seconds establish psycic connection
+		setTimeout(function(){
+			console.log('Pscycic connection establish!'); 
+		}, 10000);
 	};
 
- 	
+
  	//starts the symbol switchng takes a callback  to tell it what to do
  	//when symbol switching is complete
- 	startInterval = function(chartGoal, callback) {
-		var changesAtOnce, switchInterval;
+ 	startInterval = function(chartEnd, callback, delay) {
+		var changesAtOnce, switchInterval, chartGoal;
+
+		if(!delay) {
+			chartGoal = chartEnd; 
+		} else {
+			chartGoal = chartMiddle; 
+			setTimeout(function(){
+				console.log('Switching Chart');
+				chartGoal = chartEnd; 
+			}, delay);
+		}
 
 		switchInterval = setInterval(function() { 
 			changesAtOnce = 10; 
@@ -160,7 +177,14 @@ var mindCrypt = (function($) {
 			chartGoalEnd.push(secretSymbol);
 		}
 		
-		
+		//this chart is filled with a symbol that will never be reached, 
+		//it can be used to do continous switching
+		chartMiddle = []; 
+		for(i=0; i < 100; i++){
+			chartGoalEnd.push('X');
+		}
+
+
 		//fill chartGoalStart with 100 random thinkDing chars
 		chartGoalStart = [];
 		for(i=0; i< 100; i++){
@@ -189,5 +213,13 @@ var mindCrypt = (function($) {
 }(jQuery));
 
 
-$(document).ready(mindCrypt.initApp);
+$(document).ready(function() {
+	//mindCrypt.initApp();
+	setTimeout(function() {
+		$('.message-area').animate({'padding-top':'3em'}); 
+		setTimeout(function(){
+			$('.message-area').animate({'padding-top':'0'}); 
+		}, 3000);
+	}, 5000);
+}); 
 

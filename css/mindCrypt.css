@@ -15,6 +15,27 @@
 	text-align: center;
 }
 
+.message-area {
+	height: 5.5em;
+	text-align: center;
+	margin-bottom: -.25em;
+}
+
+.message-area .inner {
+	height: 3em;
+	position: relative;
+	margin-bottom: -.5em;
+}
+
+.message {
+	margin: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+
 table {
 	font-family: icomoon;
 	font-size: 290%;
@@ -33,9 +54,6 @@ table {
 .number {
 	font-size: .30em;
 	position: absolute;
-	/*visibility: hidden;*/
-
-
 }
 
 .mind-connection-status {
@@ -44,6 +62,7 @@ table {
 	font-size: 250%;
 	position: relative;
 	margin: 0 auto;
+	margin-bottom: .15em;
 	text-align: center;
 }
 
@@ -52,7 +71,6 @@ table {
 	margin: 0 auto;
 	top: 0;
 	left: 0;
-
 }
 
 .mind-connection-status .glyphicon-exclamation-sign {
@@ -61,7 +79,6 @@ table {
 	top: .5em;
 	left: 1.5em;
 	color: red;
-
 }
 
 .mind-connection-status .glyphicon-eye-open {
@@ -69,7 +86,7 @@ table {
 	position: absolute;
 	top: .5em;
 	left: 1.5em;
-	color: green;
+	color: steelblue;
 }
 
 
