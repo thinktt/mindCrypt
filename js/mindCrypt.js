@@ -52,8 +52,8 @@ var mindCrypt = (function($) {
 			--i; 
 		}); 
 		
-		$('.mind-connection-status').slidToggle(); 
-		$('html').on('click', runStart); 
+		runStart();
+
 	};
 
 			
@@ -97,17 +97,31 @@ var mindCrypt = (function($) {
 	//the callback used when startInterval finishes it's first run 
 	firstRunEnd = function() {
 		$numberSpots.fadeIn('slow');
-		$('html').on('click', runEnding); 
+		$('.message p').hide();	
+		$('.message p').html(message2);
+		$('.message p').fadeIn('slow', function() {
+			$('.begin-btn').on('click', runEnding); 
+		});
+		$('.message-area').animate({'padding-top':'0'}); 		
 	};
 
 	//the callback used when startInterval finsishes it second run
-	secondRunEnd = function() {};
+	secondRunEnd = function() {
+		$('.message p').hide();	
+		$('.message p').html(message5);
+		$('.message-area').css('padding-top', '3em'); 
+		$('.mind-connection-status').remove();
+		$('.message p').fadeIn();
+		$('.message-area').animate({'padding-top':'0'});
+	};
 
 
 	//starts the first part of mindCrypt, is bound to a click 
 	//event after initDOM is run
 	runStart = function() {
-		$('html').unbind('click'); 
+		$('.message p').hide();	
+		$('.message p').html(message1);
+		$('.message p').fadeIn();		
 		startInterval(chartGoalStart, firstRunEnd);
 	};
 
@@ -115,10 +129,19 @@ var mindCrypt = (function($) {
 	//this function is bound to a click event after the first part of 
 	//mindCrytp has run 
 	runEnding = function() {
-		$('html').unbind('click'); 
+		$('.begin-btn').unbind('click'); 
 		$numberSpots.fadeOut('slow');
+		$('.message p').hide();	
+		$('.message p').html(message3);
+		
+		$('.message-area').css('padding-top', '3em'); 
+		$('.begin-btn').remove();
+		
+		$('.message p').fadeIn();
+		$('.message-area').animate({'padding-top':'0'});
 
-		//rebuild symbol sposts
+
+		//rebuild symbol spots
 		$symbolSpots = $('tr.symbols').find('td').find('div.symbol');
 		//make symbol spots switchable again
 		$symbolSpots.each(function() {
@@ -129,7 +152,13 @@ var mindCrypt = (function($) {
 
 		//after 10 seconds establish psycic connection
 		setTimeout(function(){
-			console.log('Pscycic connection establish!'); 
+			$('.message p').hide();	
+			$('.message p').html(message4);
+			$('.message p').fadeIn();
+			$('.glyphicon-exclamation-sign').addClass('glyphicon-eye-open');
+			$('.glyphicon-exclamation-sign')
+				.toggleClass('glyphicon-exclamation-sign');
+						
 		}, 10000);
 	};
 
@@ -213,13 +242,44 @@ var mindCrypt = (function($) {
 }(jQuery));
 
 
+var message1, message2, message3, message4, message5;
+
+message1 = "Please stand by while I generate the symbol chart. Don't forget " +
+		   "your calculated number.";
+
+message2 = "Find the symbol in the chart below that matches your caculated " +
+		   "number. When you're ready start <br> concentraing intently on this " +
+		   "symbol in your mind and click the button to begin the " +
+		   "experiment.";
+
+message3 = "Establishing Psycic Connection. Please concentrate on your " + 
+		   "secret symbol!";
+
+message4 = "Psycic Connection Establishded.";
+
+message5 = "Is this the symbol you chose?"; 
+
+
 $(document).ready(function() {
-	//mindCrypt.initApp();
+	mindCrypt.initApp();
+}); 
+
+
+
+
+
+/*
+	$('.begin-btn').remove(); 
+	$('.mind-connection-status').remove(); 
+	$('.message p').html(message5); 
+
 	setTimeout(function() {
 		$('.message-area').animate({'padding-top':'3em'}); 
 		setTimeout(function(){
 			$('.message-area').animate({'padding-top':'0'}); 
 		}, 3000);
-	}, 5000);
-}); 
+	}, 3000);
+*/
+	
+
 
