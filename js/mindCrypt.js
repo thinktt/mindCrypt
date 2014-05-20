@@ -261,7 +261,7 @@ message5 = "Is this the symbol you chose?";
 
 
 $(document).ready(function() {
-	mindCrypt.initApp();
+	//mindCrypt.initApp();
 }); 
 
 
