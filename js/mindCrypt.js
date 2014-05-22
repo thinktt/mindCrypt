@@ -254,19 +254,19 @@ var mindCrypt = (function($) {
 var message1, message2, message3, message4, message5;
 
 message1 = "Please stand by while I generate the symbol chart. <br> Don't " +
-		   "forget the number you calculated earlier. <br>";
+		   "forget the number you calculated earlier.";
 
-message2 = "Find the symbol in the chart below that matches your caculated " +
-		   "number. When you're ready start <br> concentraing intently on this " +
-		   "symbol in your mind and click the button to begin the " +
-		   "experiment.";
+message2 = "Find the number you calculated and it's matching symbol. " +
+		   "This is your symbol. <br> When you are " +
+		   "ready click the button below and concentrate on the chart " +
+		   "while thinking of your symbol.";
 
-message3 = "Establishing Psycic Connection. Please concentrate on your " + 
-		   "secret symbol!";
+message3 = "Establishing Psycic Connection. <br> Watch the chart and " + 
+		   "mentally focus on your symbol.";
 
 message4 = "Psycic Connection Establishded.";
 
-message5 = "Is this the symbol you chose?"; 
+message5 = "Is this your symbol?"; 
 
 
 $(document).ready(function() {
