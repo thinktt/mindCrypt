@@ -97,22 +97,26 @@ var mindCrypt = (function($) {
 	//the callback used when startInterval finishes it's first run 
 	firstRunEnd = function() {
 		$numberSpots.fadeIn('slow');
-		$('.message p').hide();	
-		$('.message p').html(message2);
-		$('.message p').fadeIn('slow', function() {
-			$('.begin-btn').on('click', runEnding); 
-		});
-		$('.message-area').animate({'padding-top':'0'}); 		
+		setTimeout(function(){
+			$('.message p').hide();	
+			$('.message p').html(message2);
+			$('.message p').fadeIn('slow', function() {
+				$('.begin-btn').on('click', runEnding); 
+			});
+			$('.message-area').animate({'padding-top':'0'}); 		
+		}, 2000);
 	};
 
 	//the callback used when startInterval finsishes it second run
 	secondRunEnd = function() {
-		$('.message p').hide();	
-		$('.message p').html(message5);
-		$('.message-area').css('padding-top', '3em'); 
-		$('.mind-connection-status').remove();
-		$('.message p').fadeIn();
-		$('.message-area').animate({'padding-top':'0'});
+		setTimeout(function(){
+			$('.message p').hide();	
+			$('.message p').html(message5);
+			$('.message-area').css('padding-top', '3em'); 
+			$('.mind-connection-status').remove();
+			$('.message p').fadeIn();
+			$('.message-area').animate({'padding-top':'0'});
+		}, 2000);
 	};
 
 
@@ -122,7 +126,9 @@ var mindCrypt = (function($) {
 		$('.message p').hide();	
 		$('.message p').html(message1);
 		$('.message p').fadeIn();		
-		startInterval(chartGoalStart, firstRunEnd);
+		setTimeout(function() {
+			startInterval(chartGoalStart, firstRunEnd);
+		}, 2000);
 	};
 
 
@@ -148,7 +154,10 @@ var mindCrypt = (function($) {
 			$(this).addClass('isSwitchable'); 
 		});
 
-		startInterval(chartGoalEnd, secondRunEnd, 10000);
+		//wait a while before chart starts switching
+		setTimeout(function(){
+			startInterval(chartGoalEnd, secondRunEnd, 10000);
+		}, 2000);
 
 		//after 10 seconds establish psycic connection
 		setTimeout(function(){
@@ -159,7 +168,7 @@ var mindCrypt = (function($) {
 			$('.glyphicon-exclamation-sign')
 				.toggleClass('glyphicon-exclamation-sign');
 						
-		}, 10000);
+		}, 12000);
 	};
 
 
@@ -244,8 +253,8 @@ var mindCrypt = (function($) {
 
 var message1, message2, message3, message4, message5;
 
-message1 = "Please stand by while I generate the symbol chart. Don't forget " +
-		   "your calculated number.";
+message1 = "Please stand by while I generate the symbol chart. <br> Don't " +
+		   "forget the number you calculated earlier. <br>";
 
 message2 = "Find the symbol in the chart below that matches your caculated " +
 		   "number. When you're ready start <br> concentraing intently on this " +
@@ -265,7 +274,7 @@ $(document).ready(function() {
 	
 	$('#introModal .btn-info').click(function(){
 		$('#introModal').modal('hide'); 
-		$('#prepModal').modal('show'); 
+		$('#prepModal').modal({'backdrop':'static'}); 
 	});
 	
 	$('#introModal .btn-danger').click(function(){
@@ -275,12 +284,14 @@ $(document).ready(function() {
 
 	$('#exitModal .btn-info').click(function(){
 		$('#exitModal').modal('hide'); 
-		$('#prepModal').modal('show'); 
+		$('#prepModal').modal({'backdrop':'static'}); 
 	});
 
 	$('#prepModal .btn-info').click(function(){
 		$('#prepModal').modal('hide'); 
-		mindCrypt.initApp();
+		$('#prepModal').on('hidden.bs.modal', function(){
+			mindCrypt.initApp();
+		});
 	});
 
 	$('.btn-info.end-btn').click(function(){
