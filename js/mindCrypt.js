@@ -302,12 +302,12 @@ $(document).ready(function() {
 		$('#noModal').modal({'backdrop':'static'});
 	});
 
-	$('#yesModal').click(function(){
+	$('#yesModal .btn-info').click(function(){
 		//$('#yesModal').modal('hide'); 
 		location.reload(); 
 	});
 
-	$('#noModal').click(function(){
+	$('#noModal .btn-info').click(function(){
 		//$('#noModal').modal('hide'); 
 		location.reload(); 
 	});
