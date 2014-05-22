@@ -261,14 +261,64 @@ message5 = "Is this the symbol you chose?";
 
 
 $(document).ready(function() {
-	//mindCrypt.initApp();
-}); 
+	$('#introModal').modal({'backdrop':'static'});
+	
+	$('#introModal .btn-info').click(function(){
+		$('#introModal').modal('hide'); 
+		$('#prepModal').modal('show'); 
+	});
+	
+	$('#introModal .btn-danger').click(function(){
+		$('#introModal').modal('hide'); 
+		$('#exitModal').modal('show'); 
+	});
+
+	$('#exitModal .btn-info').click(function(){
+		$('#exitModal').modal('hide'); 
+		$('#prepModal').modal('show'); 
+	});
+
+	$('#prepModal .btn-info').click(function(){
+		$('#prepModal').modal('hide'); 
+		mindCrypt.initApp();
+	});
+
+	$('.btn-info.end-btn').click(function(){
+		$('#yesModal').modal({'backdrop':'static'});
+	});
+
+	$('.btn-danger.end-btn').click(function(){
+		$('#noModal').modal({'backdrop':'static'});
+	});
+
+	$('#yesModal').click(function(){
+		//$('#yesModal').modal('hide'); 
+		location.reload(); 
+	});
+
+	$('#noModal').click(function(){
+		//$('#noModal').modal('hide'); 
+		location.reload(); 
+	});
+
+
+});
 
 
 
 
 
 /*
+	mindCrypt.initApp();
+	
+	$('#introModal').click(function(){
+		$('#introModal').hide(); 
+		$('#introModal').modal('hide'); 
+		$('#prepModal').modal('show'); 
+
+		//$('#prepModal').modal('show');
+	});	
+	
 	$('.begin-btn').remove(); 
 	$('.mind-connection-status').remove(); 
 	$('.message p').html(message5); 
