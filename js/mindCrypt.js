@@ -159,7 +159,7 @@ var mindCrypt = (function($) {
 			startInterval(chartGoalEnd, secondRunEnd, 10000);
 		}, 2000);
 
-		//after 10 seconds establish psycic connection
+		//after 10 seconds establish psychic connection
 		setTimeout(function(){
 			$('.message p').hide();	
 			$('.message p').html(message4);
@@ -261,10 +261,10 @@ message2 = "Find the number you calculated and it's matching symbol. " +
 		   "ready click the button below and concentrate on the chart " +
 		   "while thinking of your symbol.";
 
-message3 = "Establishing Psycic Connection. <br> Watch the chart and " + 
+message3 = "Establishing Psychic Connection. <br> Watch the chart and " + 
 		   "mentally focus on your symbol.";
 
-message4 = "Psycic Connection Establishded.";
+message4 = "Psychic Connection Establishded.";
 
 message5 = "Is this your symbol?"; 
 
@@ -316,31 +316,5 @@ $(document).ready(function() {
 });
 
 
-
-
-
-/*
-	mindCrypt.initApp();
-	
-	$('#introModal').click(function(){
-		$('#introModal').hide(); 
-		$('#introModal').modal('hide'); 
-		$('#prepModal').modal('show'); 
-
-		//$('#prepModal').modal('show');
-	});	
-	
-	$('.begin-btn').remove(); 
-	$('.mind-connection-status').remove(); 
-	$('.message p').html(message5); 
-
-	setTimeout(function() {
-		$('.message-area').animate({'padding-top':'3em'}); 
-		setTimeout(function(){
-			$('.message-area').animate({'padding-top':'0'}); 
-		}, 3000);
-	}, 3000);
-*/
-	
 
 
