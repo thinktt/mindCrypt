@@ -45,9 +45,15 @@ table {
 	font-family: icomoon;
 	font-size: 290%;
 	margin: 0 auto;
-	float: none;
+	float: left;
 }
- 
+
+
+@media (max-width: 767px) {
+	table {
+		font-size: 190%; 
+	}
+}
 
 .table-bordered td {
 	width: 1.5em;
