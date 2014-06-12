@@ -312,9 +312,64 @@ $(document).ready(function() {
 		location.reload(); 
 	});
 
+	var adjustChart = function() {
+		var windowsize = $(window).width();
+		
+		if(windowsize < 480) {
+			//format chart for verticle phone
+			$('.top-of-page, .chart').find('.col-xs-1')
+				.removeClass('col-xs-1')
+				.addClass('hidden-xs'); 
+
+			$('.top-of-page, .chart').find('.col-xs-10')
+				.removeClass('col-xs-10')
+				.addClass('col-xs-12');
+			
+			$('.top-of-page, .chart').find('.col-xs-4')
+				.removeClass('col-xs-4')
+				.addClass('col-xs-6');
+		} else {
+			//format chart for horizontle phone
+			$('.top-of-page, .chart').find('.hidden-xs')
+				.removeClass('hidden-xs')
+				.addClass('col-xs-1'); 
+			
+			$('.top-of-page, .chart').find('.col-xs-12')
+				.removeClass('col-xs-12')
+				.addClass('col-xs-10');
+			
+			$('.top-of-page, .chart').find('.col-xs-6')
+				.removeClass('col-xs-6')
+				.addClass('col-xs-4');
+		} 
+	};
+
+	adjustChart(); 
+	$(window).resize(adjustChart);
+
+
 
 });
 
 
 
+/*
+
+col-xs-4
+col-xs-6
+
+col-xs-1 
+hidden-xs
+
+col-xs-10
+col-xs-12
+
+
+"col-xs-1 col-sm-1 col-md-2";
+"hidden-xs col-sm-1 col-md-2";
+
+"col-xs-10 col-sm-10 col-md-8";
+"col-xs-12 col-sm-10 col-md-8";
+
+*/
 
