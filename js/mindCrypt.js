@@ -15,7 +15,7 @@ var mindCrypt = (function($) {
 	
 	//the actual DOM chart locations that the secret symbol 
 	//will be placed in 
-	magicNumbers = [18, 27, 36, 45, 54, 63, 72, 81, 90];
+	magicNumbers = [8, 17, 26, 35, 44, 53, 62, 71, 80];
 	
 	i =0;
 	
@@ -46,10 +46,10 @@ var mindCrypt = (function($) {
 
 
 		//number each square of the chart
-		i = 99; 
+		i = 1; 
 		$numberSpots.each(function() {
 			$(this).html(i); 
-			--i; 
+			++i; 
 		}); 
 		
 		runStart();
