@@ -45,13 +45,26 @@ table {
 	font-family: icomoon;
 	font-size: 290%;
 	margin: 0 auto;
-	float: left;
+	
 }
 
+.tiny {
+	visibility: hidden;
+}
 
 @media (max-width: 767px) {
 	table {
-		font-size: 190%; 
+		font-size: 220%; 
+	}
+}
+
+@media (max-width: 480px) {
+	.tiny {
+		visibility: visible;
+	}
+
+	table {
+		font-size: 170%; 
 	}
 }
 
