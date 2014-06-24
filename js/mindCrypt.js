@@ -8,7 +8,23 @@ var mindCrypt = (function($) {
 		randomSymbol, secretSymbol, magicNumbers, getRandomInt, 
 		changeRandomSymbol, firstRunEnd, secondRunEnd, runEnding, 
 		startInterval, buildCharts, runStart, chartMiddle, runMiddle,
-		middleEnd;
+		middleEnd, message1, message2, message3, message4, message5;
+
+	//dialouge messages
+	message1 = "Please stand by while I generate the symbol chart. <br> Don't " +
+			   "forget the number you calculated earlier.";
+
+	message2 = "Find the number you calculated and its matching symbol. " +
+			   "This is your symbol. <br> When you are " +
+			   "ready click the button below and concentrate on the chart " +
+			   "while thinking of your symbol.";
+
+	message3 = "Establishing Psychic Connection. <br> Watch the chart and " + 
+			   "mentally focus on your symbol.";
+
+	message4 = "Psychic Connection Establishded.";
+
+	message5 = "Is this your symbol?"; 
 
 	//symbols used in the switching chart
 	thinkDing = '❂☭☮♕♞☸♗♠☹✪❉✂☾☂♆✸★✈♙☏♬☢☠☯♖✿';
@@ -249,24 +265,6 @@ var mindCrypt = (function($) {
 	};
 
 }(jQuery));
-
-
-var message1, message2, message3, message4, message5;
-
-message1 = "Please stand by while I generate the symbol chart. <br> Don't " +
-		   "forget the number you calculated earlier.";
-
-message2 = "Find the number you calculated and its matching symbol. " +
-		   "This is your symbol. <br> When you are " +
-		   "ready click the button below and concentrate on the chart " +
-		   "while thinking of your symbol.";
-
-message3 = "Establishing Psychic Connection. <br> Watch the chart and " + 
-		   "mentally focus on your symbol.";
-
-message4 = "Psychic Connection Establishded.";
-
-message5 = "Is this your symbol?"; 
 
 
 $(document).ready(function() {
