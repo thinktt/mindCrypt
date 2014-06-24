@@ -256,7 +256,7 @@ var message1, message2, message3, message4, message5;
 message1 = "Please stand by while I generate the symbol chart. <br> Don't " +
 		   "forget the number you calculated earlier.";
 
-message2 = "Find the number you calculated and it's matching symbol. " +
+message2 = "Find the number you calculated and its matching symbol. " +
 		   "This is your symbol. <br> When you are " +
 		   "ready click the button below and concentrate on the chart " +
 		   "while thinking of your symbol.";
@@ -350,26 +350,4 @@ $(document).ready(function() {
 
 
 });
-
-
-
-/*
-
-col-xs-4
-col-xs-6
-
-col-xs-1 
-hidden-xs
-
-col-xs-10
-col-xs-12
-
-
-"col-xs-1 col-sm-1 col-md-2";
-"hidden-xs col-sm-1 col-md-2";
-
-"col-xs-10 col-sm-10 col-md-8";
-"col-xs-12 col-sm-10 col-md-8";
-
-*/
 
