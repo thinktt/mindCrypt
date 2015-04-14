@@ -1,10 +1,9 @@
 Mind Crypt
 =========
 
-This is an adaptation of the infamous "Lady Esmerelda's Crystal Ball". 
+[Click here to see the fully working demo of this app](http://thinktt.github.io/mindCrypt/)  
 
-I'm not sure who the original author was but I think it may have been this guy:
-http://www.flashlightcreative.net/
+This is an adaptation of the infamous "Lady Esmerelda's Crystal Ball". I'm pretty sure the original was made by  [Andy Wolfe.](http://www.flashlightcreative.net/)
 
 This app demonstrates using Bootstrap and jQuery together. It also features some fun HTML5 animation and is mobile reponsive.  
 
